@@ -12,30 +12,30 @@ class SuperHero
         $this->health = $heroHealth;
     }
 
-    public function attack($SuperHero){
+    public function attack(SuperHero $superHero){
         $attackDamage = rand(1,10);
-        $this->determineHealth($attackDamage);
+        $this->determineHealth($superHero, $attackDamage);
 
     }
 
-    public function determineHealth($attackDamage){
-        $this->health = $this->health - $attackDamage;
-        if($this->health <= 0){
-            $this->health = 0;
-            $this->isDead = true;
-            $this->isDead($attackDamage);
+    public function determineHealth(SuperHero $superHero, $attackDamage){
+        $superHero->health = $superHero->health - $attackDamage;
+        if($superHero->health <= 0){
+            $superHero->health = 0;
+            $superHero->isDead = true;
+            $superHero->isDead($superHero, $attackDamage);
 
         }else{
-           $this->isDead($attackDamage);
+           $superHero->isDead($superHero, $attackDamage);
         }
     }
 
-    public function isDead($attackDamage){
-        if($this->isDead){
-            echo $this->name."'s health is 0!!!<br>";
-            echo $this->name." is dead!!!<br>";
+    public function isDead(SuperHero $superHero, $attackDamage){
+        if($superHero->isDead){
+            echo $superHero->name."'s health is 0!!!<br>";
+            echo $superHero->name." is dead!!!<br>";
         }else{
-            echo $this->name." takes ".$attackDamage." but fights on!!<br>";
+            echo $superHero->name." takes ".$attackDamage." but fights on!!<br>";
         }
     }
 
